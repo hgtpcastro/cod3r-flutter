@@ -3,6 +3,14 @@ class Data {
   int mes;
   int ano;
 
+  // Data(int dia, int mes, int ano) {
+  //   this.dia = dia;
+  //   this.mes = mes;
+  //   this.ano = ano;
+  // }
+
+  Data([this.dia = 1, this.mes = 1, this.ano = 1970]);
+
   String obterFormatada() {
     return '${dia}/${mes}/${ano}';
   }
@@ -13,12 +21,12 @@ class Data {
 }
 
 main() {
-  var dataAniversario = new Data();
-  dataAniversario.dia = 22;
-  dataAniversario.mes = 02;
-  dataAniversario.ano = 1980;
+  var dataAniversario = new Data(22, 02, 1980);
+  // dataAniversario.dia = 22;
+  // dataAniversario.mes = 02;
+  // dataAniversario.ano = 1980;
 
-  var dataCompra = new Data();
+  var dataCompra = new Data(01, 01, 2021);
   dataCompra.dia = 31;
   dataCompra.mes = 12;
   dataCompra.ano = 2021;
@@ -31,4 +39,9 @@ main() {
 
   print(dataCompra);
   print(dataCompra.toString());
+
+  print(new Data());
+  print(Data(31));
+  print(Data(31, 12));
+  print(Data(31, 12, 2021));
 }
