@@ -11,8 +11,15 @@ class Data {
 
   Data([this.dia = 1, this.mes = 1, this.ano = 1970]);
 
+  Data.com({this.dia = 1, this.mes = 1, this.ano = 1970});
+
+  Data.ultimoDiaDoAno(this.ano) {
+    dia = 31;
+    mes = 12;
+  }
+
   String obterFormatada() {
-    return '${dia}/${mes}/${ano}';
+    return '$dia/$mes/$ano';
   }
 
   String toString() {
@@ -22,9 +29,6 @@ class Data {
 
 main() {
   var dataAniversario = new Data(22, 02, 1980);
-  // dataAniversario.dia = 22;
-  // dataAniversario.mes = 02;
-  // dataAniversario.ano = 1980;
 
   var dataCompra = new Data(01, 01, 2021);
   dataCompra.dia = 31;
@@ -40,8 +44,10 @@ main() {
   print(dataCompra);
   print(dataCompra.toString());
 
-  print(new Data());
-  print(Data(31));
-  print(Data(31, 12));
-  print(Data(31, 12, 2021));
+  print(Data.com(ano: 2022));
+
+  var dataFinal = Data.com(dia: 12, mes: 7, ano: 2024);
+  print(dataFinal);
+
+  print(Data.ultimoDiaDoAno(2023));
 }
