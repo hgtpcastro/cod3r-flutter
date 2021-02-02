@@ -8,7 +8,7 @@ main() => runApp(PerguntasApp());
 class _PerguntasAppState extends State<PerguntasApp> {
   var _perguntaSelecionada = 0;
 
-  void _responderPergunta() {
+  void _responderQuestao() {
     setState(() => _perguntaSelecionada++);
     print(_perguntaSelecionada);
   }
@@ -28,9 +28,13 @@ class _PerguntasAppState extends State<PerguntasApp> {
         body: Column(
           children: [
             Questao(perguntas[_perguntaSelecionada]),
-            Resposta('Resposta 1'),
-            Resposta('Resposta 2'),
-            Resposta('Resposta 3'),
+            Resposta('Resposta 1', _responderQuestao),
+            Resposta('Resposta 2', () {
+              setState(() {
+                _perguntaSelecionada = 0;
+              });
+            }),
+            Resposta('Resposta 3', _responderQuestao),
           ],
         ),
       ),
