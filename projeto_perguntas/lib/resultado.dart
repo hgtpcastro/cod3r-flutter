@@ -5,7 +5,9 @@ class Resultado extends StatelessWidget {
 
   final int pontuacao;
 
-  Resultado(this.texto, this.pontuacao);
+  final void Function() reiniciarQuestionario;
+
+  Resultado(this.texto, this.pontuacao, this.reiniciarQuestionario);
 
   String get textoResultado {
     if (this.pontuacao < 8) {
@@ -21,16 +23,26 @@ class Resultado extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: double.infinity,
-      child: Center(
-        child: Text(
-          textoResultado,
-          style: TextStyle(
-            fontSize: 28,
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Center(
+          child: Text(
+            this.textoResultado,
+            style: TextStyle(
+              fontSize: 28,
+            ),
           ),
         ),
-      ),
+        FlatButton(
+          child: Text(
+            'Reiniciar?',
+            style: TextStyle(fontSize: 18),
+          ),
+          textColor: Colors.blue,
+          onPressed: this.reiniciarQuestionario,
+        )
+      ],
     );
   }
 }
