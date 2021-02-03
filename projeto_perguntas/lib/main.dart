@@ -8,39 +8,44 @@ main() => runApp(PerguntasApp());
 class _PerguntasAppState extends State<PerguntasApp> {
   var _perguntaSelecionada = 0;
 
+  var _pontuacaoTotal = 0;
+
   final _perguntas = const [
     {
       'pergunta': 'Qual é a sua cor favoríta?',
       'respostas': [
-        {'texto': 'Vermelho', 'nota': 10},
-        {'texto': 'Preto', 'nota': 5},
-        {'texto': 'Verde', 'nota': 3},
-        {'texto': 'Branco', 'nota': 1},
+        {'texto': 'Vermelho', 'pontuacao': 10},
+        {'texto': 'Preto', 'pontuacao': 5},
+        {'texto': 'Verde', 'pontuacao': 3},
+        {'texto': 'Branco', 'pontuacao': 1},
       ]
     },
     {
       'pergunta': 'Qual é o seu animal favoríto?',
       'respostas': [
-        {'texto': 'Leão', 'nota': 10},
-        {'texto': 'Coelho', 'nota': 5},
-        {'texto': 'Cobra', 'nota': 3},
-        {'texto': 'Elefante', 'nota': 1},
+        {'texto': 'Leão', 'pontuacao': 10},
+        {'texto': 'Coelho', 'pontuacao': 5},
+        {'texto': 'Cobra', 'pontuacao': 3},
+        {'texto': 'Elefante', 'pontuacao': 1},
       ]
     },
     {
       'pergunta': 'Qual é o seu time favoríto?',
       'respostas': [
-        {'texto': 'Flamengo', 'nota': 10},
-        {'texto': 'Real Madrid', 'nota': 5},
-        {'texto': 'Barcelona', 'nota': 3},
-        {'texto': 'Juventus', 'nota': 1},
+        {'texto': 'Flamengo', 'pontuacao': 10},
+        {'texto': 'Real Madrid', 'pontuacao': 5},
+        {'texto': 'Barcelona', 'pontuacao': 3},
+        {'texto': 'Juventus', 'pontuacao': 1},
       ]
     }
   ];
 
-  void _responderQuestao() {
+  void _responderQuestao(int pontuacao) {
     if (temPerguntaSelecionada) {
-      setState(() => _perguntaSelecionada++);
+      setState(() {
+        _perguntaSelecionada++;
+        _pontuacaoTotal += pontuacao;
+      });
     }
   }
 
@@ -65,7 +70,7 @@ class _PerguntasAppState extends State<PerguntasApp> {
                 respostas: respostas,
                 aoResponderQuestao: _responderQuestao,
               )
-            : Resultado('Parabéns!!!'),
+            : Resultado('Parabéns!!!', _pontuacaoTotal),
       ),
     );
   }
