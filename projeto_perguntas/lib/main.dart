@@ -11,15 +11,30 @@ class _PerguntasAppState extends State<PerguntasApp> {
   final _perguntas = const [
     {
       'pergunta': 'Qual é a sua cor favoríta?',
-      'respostas': ['Preto', 'Vermelho', 'Verde', 'Branco']
+      'respostas': [
+        {'texto': 'Vermelho', 'nota': 10},
+        {'texto': 'Preto', 'nota': 5},
+        {'texto': 'Verde', 'nota': 3},
+        {'texto': 'Branco', 'nota': 1},
+      ]
     },
     {
       'pergunta': 'Qual é o seu animal favoríto?',
-      'respostas': ['Leão', 'Coelho', 'Cobra', 'Elefante']
+      'respostas': [
+        {'texto': 'Leão', 'nota': 10},
+        {'texto': 'Coelho', 'nota': 5},
+        {'texto': 'Cobra', 'nota': 3},
+        {'texto': 'Elefante', 'nota': 1},
+      ]
     },
     {
       'pergunta': 'Qual é o seu time favoríto?',
-      'respostas': ['Flamengo', 'Real Madrid', 'Barcelona', 'Juventus']
+      'respostas': [
+        {'texto': 'Flamengo', 'nota': 10},
+        {'texto': 'Real Madrid', 'nota': 5},
+        {'texto': 'Barcelona', 'nota': 3},
+        {'texto': 'Juventus', 'nota': 1},
+      ]
     }
   ];
 
@@ -35,7 +50,7 @@ class _PerguntasAppState extends State<PerguntasApp> {
 
   @override
   Widget build(BuildContext context) {
-    List<String> respostas = temPerguntaSelecionada
+    List<Map<String, Object>> respostas = temPerguntaSelecionada
         ? _perguntas[_perguntaSelecionada]['respostas']
         : null;
 
