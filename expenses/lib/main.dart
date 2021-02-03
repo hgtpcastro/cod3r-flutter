@@ -14,7 +14,7 @@ class ExpensesApp extends StatelessWidget {
 }
 
 class MyHomePage extends StatelessWidget {
-  final _Transactions = [
+  final _transactions = [
     Transaction(
         id: 't1',
         title: 'Novo tênis de corrida',
@@ -42,9 +42,21 @@ class MyHomePage extends StatelessWidget {
             ),
           ),
           Column(
-            children: _Transactions.map((transaction) {
+            children: _transactions.map((transaction) {
               return Card(
-                child: Text(transaction.title),
+                child: Row(
+                  children: [
+                    Container(
+                      child: Text(transaction.value.toString()),
+                    ),
+                    Column(
+                      children: [
+                        Text(transaction.title),
+                        Text(transaction.date.toString()),
+                      ],
+                    ),
+                  ],
+                ),
               );
             }).toList(),
           ),
