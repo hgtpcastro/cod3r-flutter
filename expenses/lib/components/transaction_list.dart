@@ -5,8 +5,14 @@ import 'package:expenses/models/transaction.dart';
 
 class TransactionList extends StatelessWidget {
   final List<Transaction> transactions;
+  final void Function({
+    String id,
+  }) onRemoveTransaction;
 
-  TransactionList(this.transactions);
+  TransactionList({
+    this.transactions,
+    this.onRemoveTransaction,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -46,7 +52,9 @@ class TransactionList extends StatelessWidget {
                       child: Padding(
                         padding: const EdgeInsets.all(6.0),
                         child: FittedBox(
-                          child: Text('R\$${transaction.value}'),
+                          child: Text(
+                            'R\$${transaction.value.toStringAsFixed(2)}',
+                          ),
                         ),
                       ),
                     ),
@@ -56,6 +64,13 @@ class TransactionList extends StatelessWidget {
                     ),
                     subtitle: Text(
                       DateFormat('d MMM y').format(transaction.date),
+                    ),
+                    trailing: IconButton(
+                      icon: Icon(Icons.delete),
+                      color: Theme.of(context).errorColor,
+                      onPressed: () => this.onRemoveTransaction(
+                        id: transaction.id,
+                      ),
                     ),
                   ),
                 );

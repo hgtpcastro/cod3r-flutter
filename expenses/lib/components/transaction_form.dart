@@ -6,9 +6,11 @@ class TransactionForm extends StatefulWidget {
     String title,
     double value,
     DateTime date,
-  ) onAddNewTransaction;
+  ) onAddTransaction;
 
-  TransactionForm(this.onAddNewTransaction);
+  TransactionForm({
+    this.onAddTransaction,
+  });
 
   @override
   _TransactionFormState createState() => _TransactionFormState();
@@ -27,7 +29,7 @@ class _TransactionFormState extends State<TransactionForm> {
       return;
     }
 
-    this.widget.onAddNewTransaction(title, value, _selectedDate);
+    this.widget.onAddTransaction(title, value, _selectedDate);
   }
 
   _showDatePicker() {
