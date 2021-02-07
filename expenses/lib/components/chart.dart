@@ -4,9 +4,9 @@ import 'package:intl/intl.dart';
 import 'package:expenses/models/transaction.dart';
 
 class Chart extends StatelessWidget {
-  final List<Transaction> recentsTransactions;
+  final List<Transaction> recentTransactions;
 
-  Chart(this.recentsTransactions);
+  Chart(this.recentTransactions);
 
   List<Map<String, Object>> get groupedTransactions {
     return List.generate(7, (index) {
@@ -14,13 +14,13 @@ class Chart extends StatelessWidget {
 
       double totalSum = 0.0;
 
-      for (var i = 0; i < recentsTransactions.length; i++) {
-        bool sameDay = recentsTransactions[i].date.day == weekDay.day;
-        bool sameMonth = recentsTransactions[i].date.month == weekDay.month;
-        bool sameYear = recentsTransactions[i].date.year == weekDay.year;
+      for (var i = 0; i < recentTransactions.length; i++) {
+        bool sameDay = recentTransactions[i].date.day == weekDay.day;
+        bool sameMonth = recentTransactions[i].date.month == weekDay.month;
+        bool sameYear = recentTransactions[i].date.year == weekDay.year;
 
         if (sameDay && sameMonth && sameYear) {
-          totalSum += recentsTransactions[i].value;
+          totalSum += recentTransactions[i].value;
         }
       }
 
@@ -33,6 +33,7 @@ class Chart extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    groupedTransactions;
     return Card(
       elevation: 6,
       margin: EdgeInsets.all(20),
