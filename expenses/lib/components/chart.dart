@@ -15,13 +15,13 @@ class Chart extends StatelessWidget {
 
       double totalSum = 0.0;
 
-      for (var i = 0; i < recentTransactions.length; i++) {
-        bool sameDay = recentTransactions[i].date.day == weekDay.day;
-        bool sameMonth = recentTransactions[i].date.month == weekDay.month;
-        bool sameYear = recentTransactions[i].date.year == weekDay.year;
+      for (var i = 0; i < this.recentTransactions.length; i++) {
+        bool sameDay = this.recentTransactions[i].date.day == weekDay.day;
+        bool sameMonth = this.recentTransactions[i].date.month == weekDay.month;
+        bool sameYear = this.recentTransactions[i].date.year == weekDay.year;
 
         if (sameDay && sameMonth && sameYear) {
-          totalSum += recentTransactions[i].value;
+          totalSum += this.recentTransactions[i].value;
         }
       }
 
@@ -53,8 +53,10 @@ class Chart extends StatelessWidget {
               child: ChartBar(
                 label: groupedTransaction['day'],
                 value: groupedTransaction['value'],
-                percentage:
-                    (groupedTransaction['value'] as double) / _weekTotalValue,
+                percentage: this._weekTotalValue == 0
+                    ? 0
+                    : (groupedTransaction['value'] as double) /
+                        this._weekTotalValue,
               ),
             );
           }).toList(),
