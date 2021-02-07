@@ -32,9 +32,14 @@ class Chart extends StatelessWidget {
     });
   }
 
+  double get _weekTotalValue {
+    return groupedTransactions.fold(0.0, (sum, groupedTransaction) {
+      return sum + groupedTransaction['value'];
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
-    //groupedTransactions;
     return Card(
       elevation: 6,
       margin: EdgeInsets.all(20),
@@ -43,7 +48,8 @@ class Chart extends StatelessWidget {
           return ChartBar(
             label: groupedTransaction['day'],
             value: groupedTransaction['value'],
-            percentage: 0.7,
+            percentage:
+                (groupedTransaction['value'] as double) / _weekTotalValue,
           );
         }).toList(),
       ),
