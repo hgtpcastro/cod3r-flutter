@@ -43,7 +43,7 @@ class Chart extends StatelessWidget {
           return ChartBar(
             label: groupedTransaction['day'],
             value: groupedTransaction['value'],
-            percentage: 0,
+            percentage: 0.7,
           );
         }).toList(),
       ),
