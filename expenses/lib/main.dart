@@ -126,10 +126,14 @@ class _MyHomePageState extends State<MyHomePage> {
 
     bool isLandscape = mediaQuery.orientation == Orientation.landscape;
 
+    final iconList = Platform.isIOS ? CupertinoIcons.refresh : Icons.list;
+    final iconChart =
+        Platform.isIOS ? CupertinoIcons.refresh : Icons.bar_chart_rounded;
+
     final actions = [
       if (isLandscape)
         _getIconButton(
-          icon: _showChart ? Icons.list : Icons.bar_chart_rounded,
+          icon: _showChart ? iconList : iconChart,
           onPressed: () {
             setState(() {
               _showChart = !_showChart;
@@ -159,40 +163,42 @@ class _MyHomePageState extends State<MyHomePage> {
         appBar.preferredSize.height -
         mediaQuery.padding.top;
 
-    final bodyPage = SingleChildScrollView(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          // if (isLandscape)
-          //   Row(
-          //     mainAxisAlignment: MainAxisAlignment.center,
-          //     children: [
-          //       Text('Exibir Gráfico'),
-          //       Switch.adaptive(
-          //         activeColor: Theme.of(context).accentColor,
-          //         value: _showChart,
-          //         onChanged: (value) {
-          //           setState(() {
-          //             _showChart = value;
-          //           });
-          //         },
-          //       ),
-          //     ],
-          //   ),
-          if (_showChart || !isLandscape)
-            Container(
-              height: availableHeight * (isLandscape ? 0.80 : 0.30),
-              child: Chart(_recentTransactions),
-            ),
-          if (!_showChart || !isLandscape)
-            Container(
-              height: availableHeight * (isLandscape ? 1 : 0.70),
-              child: TransactionList(
-                transactions: _transactions,
-                onRemoveTransaction: _removeTransaction,
+    final bodyPage = SafeArea(
+      child: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            // if (isLandscape)
+            //   Row(
+            //     mainAxisAlignment: MainAxisAlignment.center,
+            //     children: [
+            //       Text('Exibir Gráfico'),
+            //       Switch.adaptive(
+            //         activeColor: Theme.of(context).accentColor,
+            //         value: _showChart,
+            //         onChanged: (value) {
+            //           setState(() {
+            //             _showChart = value;
+            //           });
+            //         },
+            //       ),
+            //     ],
+            //   ),
+            if (_showChart || !isLandscape)
+              Container(
+                height: availableHeight * (isLandscape ? 0.80 : 0.30),
+                child: Chart(_recentTransactions),
               ),
-            ),
-        ],
+            if (!_showChart || !isLandscape)
+              Container(
+                height: availableHeight * (isLandscape ? 1 : 0.70),
+                child: TransactionList(
+                  transactions: _transactions,
+                  onRemoveTransaction: _removeTransaction,
+                ),
+              ),
+          ],
+        ),
       ),
     );
 
