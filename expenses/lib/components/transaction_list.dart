@@ -21,12 +21,12 @@ class TransactionList extends StatelessWidget {
             builder: (ctx, constraints) {
               return Column(
                 children: [
-                  SizedBox(height: 20),
+                  const SizedBox(height: 20),
                   Text(
                     'Nenhuma transação cadastrada!',
                     style: Theme.of(context).textTheme.headline6,
                   ),
-                  SizedBox(height: 20),
+                  const SizedBox(height: 20),
                   Container(
                     height: constraints.maxHeight * 0.60,
                     child: Image.asset(
@@ -72,12 +72,12 @@ class TransactionList extends StatelessWidget {
                           onPressed: () => this.onRemoveTransaction(
                             id: transaction.id,
                           ),
-                          icon: Icon(Icons.delete),
-                          label: Text('Excluir'),
+                          icon: const Icon(Icons.delete),
+                          label: const Text('Excluir'),
                           textColor: Theme.of(context).errorColor,
                         )
                       : IconButton(
-                          icon: Icon(Icons.delete),
+                          icon: const Icon(Icons.delete),
                           color: Theme.of(context).errorColor,
                           onPressed: () => this.onRemoveTransaction(
                             id: transaction.id,
