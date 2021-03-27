@@ -4,6 +4,10 @@ import 'package:meals/components/main_drawer.dart';
 import 'package:meals/models/settings.dart';
 
 class SettingsScreen extends StatefulWidget {
+  final Function(Settings) onSettingsChanged;
+
+  const SettingsScreen(this.onSettingsChanged);
+
   @override
   _SettingsScreenState createState() => _SettingsScreenState();
 }
@@ -15,14 +19,16 @@ class _SettingsScreenState extends State<SettingsScreen> {
     String title,
     String subTitle,
     bool value,
-    Function onChanged,
+    Function(bool) onChanged,
   }) {
     return SwitchListTile(
-      title: Text(title),
-      subtitle: Text(subTitle),
-      value: value,
-      onChanged: onChanged,
-    );
+        title: Text(title),
+        subtitle: Text(subTitle),
+        value: value,
+        onChanged: (value) {
+          onChanged(value);
+          widget.onSettingsChanged(settings);
+        });
   }
 
   @override
